@@ -7,8 +7,14 @@ function pulsaA(){
 console.log ("Has pulsado A");
 
 }
+function pulsaB(){
+
+console.log ("Has pulsado B");
+
+}
 
 eventoTeclado.simple_combo("a", pulsaA);
+eventoTeclado.simple_combo("b", pulsaB);
 
 /*document.addEventListener('keydown', function (tecla){
   if(tecla.keyCode == 32){
