@@ -1,4 +1,4 @@
-document.addEventListener('keydown', function tecla(){
+document.addEventListener('keydown', function (tecla){
   if(tecla.keyCode == 32){
     console.log('Espacio');
   }else if(tecla.keyCode == 38){
