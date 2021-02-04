@@ -1,9 +1,16 @@
-var miCanvas;
+var personaje = function () {
+
+}
+
+
+/*var miCanvas;
 
 function inicializar() {
   miCanvas = document.getElementById('canvas')
   miCanvas.addEventListener('mousedown', clicRaton, false);
   miCanvas.addEventListener('mouseup', sueltaRaton, false);
+  miCanvas.addEventListener('mousemove', movimientoRaton, false);
+
 }
 
 function clicRaton(e){
@@ -13,6 +20,13 @@ function clicRaton(e){
 function sueltaRaton(e){
   console.log("Solto el mouse en el canvas");
 }
+
+function movimientoRaton(e){
+  var x=e.pageX;
+  var y=e.pageY;
+  console.log("Mouse moviendose  pos "+x+","+y);
+}*/
+
 
 /*var configTeclado = { prevent_repeat : true };
 
