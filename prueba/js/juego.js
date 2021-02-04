@@ -12,9 +12,15 @@ function pulsaB(){
 console.log ("Has pulsado B");
 
 }
+function pulsaCombo(){
+
+console.log ("Has activado el ataque especial");
+
+}
 
 eventoTeclado.simple_combo("a", pulsaA);
 eventoTeclado.simple_combo("b", pulsaB);
+eventoTeclado.sequence_combo("up down a b", pulsaCombo);
 
 /*document.addEventListener('keydown', function (tecla){
   if(tecla.keyCode == 32){
