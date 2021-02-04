@@ -1,4 +1,10 @@
 var fps = 10;
+var xEscenario;
+
+function moverEscenario(){
+  xEscenario++;
+  console.log(xEscenario);
+}
 
 function main(){
   console.log('fotograma');
