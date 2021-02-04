@@ -7,4 +7,4 @@ function atacar(){
   console.log("Has atacado");
 }
 
-setInterval(principal, 1000/fps);
+setInterval(main, 1000/fps);
