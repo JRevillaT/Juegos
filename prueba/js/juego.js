@@ -1,7 +1,22 @@
-var configTeclado = { prevent_repeat : true };
+var miCanvas;
+
+function inicializar() {
+  miCanvas = document.getElementById('canvas')
+  miCanvas.addEventListener('mousedown', clicRaton, false);
+  miCanvas.addEventListener('mouseup', sueltaRaton, false);
+}
+
+function clicRaton(e){
+  console.log("Pulso en el canvas");
+}
+
+function sueltaRaton(e){
+  console.log("Solto el mouse en el canvas");
+}
+
+/*var configTeclado = { prevent_repeat : true };
 
 var eventoTeclado = new window.keypress.Listener(this,configTeclado);
-var i=0;
 
 function pulsaA(){
 
@@ -14,13 +29,12 @@ console.log ("Has pulsado B");
 
 }
 function pulsaCombo(){
-console.log ("Has activado el ataque especial " + i);
-i++;
+console.log ("Has activado el ataque especial");
 }
 
 eventoTeclado.simple_combo("a", pulsaA);
 eventoTeclado.simple_combo("b", pulsaB);
-eventoTeclado.sequence_combo("up down a b", pulsaCombo);
+eventoTeclado.sequence_combo("up down a b", pulsaCombo);*/
 
 /*document.addEventListener('keydown', function (tecla){
   if(tecla.keyCode == 32){
