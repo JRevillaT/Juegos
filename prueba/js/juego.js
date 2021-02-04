@@ -1,5 +1,62 @@
-var personaje = function () {
+var canvas;
+var ctx;
+var fps=50;
 
+function inicializar() {
+  canvas = document.getElementById('canvas');
+  ctx = canvas.getContext('2d');
+
+  setInterval(function () {
+    main();
+  }, 1000/fps);
+}
+
+var personaje = function(x,y) {
+  this.x=x;
+  this.y=y;
+  this.derecha = true;
+
+  this.dibuja = function () {
+    ctx.fillstyle = '#FF000';
+    ctx.fillRect(this.x, this.y, 50, 50);
+  }
+
+  this.mueve = function (velocidad) {
+    if(this.derecha == true){
+      if (this.x < 400)
+        this.x+=velocidad;
+      else {
+        this.derecha = false;
+      }
+    }else {
+      if (this.x > 50)
+        this.x-=velocidad;
+      else {
+        this.derecha = true;
+      }
+    }
+  }
+}
+
+function main() {
+  borraCanvas();
+  personaje1.dibuja();
+  personaje2.dibuja();
+  personaje3.dibuja();
+
+  personaje1.mueve(1);
+  personaje2.mueve(5);
+  personaje3.mueve(10);
+  //console.log("Funcion");
+}
+
+var personaje1 = new personaje(10,100);
+var personaje2 = new personaje(10,200);
+var personaje3 = new personaje(10,350);
+
+function borraCanvas() {
+  canvas.width = 500;
+  canvas.height = 400;
 }
 
 
