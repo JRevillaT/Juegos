@@ -1,6 +1,7 @@
 var configTeclado = { prevent_repeat : true };
 
 var eventoTeclado = new window.keypress.Listener(this,configTeclado);
+var i=0;
 
 function pulsaA(){
 
@@ -13,9 +14,8 @@ console.log ("Has pulsado B");
 
 }
 function pulsaCombo(){
-
-console.log ("Has activado el ataque especial");
-
+console.log ("Has activado el ataque especial " + i);
+i++;
 }
 
 eventoTeclado.simple_combo("a", pulsaA);
