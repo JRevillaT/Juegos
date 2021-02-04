@@ -1,10 +1,24 @@
-document.addEventListener('keydown', function (tecla){
+var configTeclado = { prevent_repeat : true };
+
+var eventoTeclado = new window.keypress.Listener(this,configTeclado);
+
+function pulsaA(){
+
+console.log ("Has pulsado A");
+
+}
+
+eventoTeclado.simple_combo("a", pulsaA);
+
+/*document.addEventListener('keydown', function (tecla){
   if(tecla.keyCode == 32){
     console.log('Espacio');
   }else if(tecla.keyCode == 38){
     console.log('Arriba');
   }
-});
+});*/
+
+
 /*var fps = 10;
 var xEscenario = 0;
 
