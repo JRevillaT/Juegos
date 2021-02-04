@@ -1,4 +1,11 @@
-var fps = 10;
+document.addEventListener('keydown', function tecla(){
+  if(tecla.keyCode == 32){
+    console.log('Espacio');
+  }else if(tecla.keyCode == 38){
+    console.log('Arriba');
+  }
+});
+/*var fps = 10;
 var xEscenario = 0;
 
 function moverEscenario(){
@@ -14,4 +21,4 @@ function atacar(){
   console.log("Has atacado");
 }
 
-setInterval(main, 1000/fps);
+setInterval(main, 1000/fps);*/
