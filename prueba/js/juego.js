@@ -3,25 +3,32 @@ var ctx;
 var fps=50;
 var imgPro;
 
+//Clases
+
 var protagonista = function (x,y) {
-  this.x=x;
-  this.y=y;
+  this.x = x;
+  this.y = y;
+  this.velocidad = 3;
 
   this. dibuja = function () {
     ctx.drawImage(imgPro, this.x, this.y);
   }
-}
 
-function inicializar() {
-  canvas = document.getElementById('canvas');
-  ctx = canvas.getContext('2d');
+  this.arriba = function () {
+    this.y -= this.velocidad;
+  }
 
-  imgPro= new Image();
-  imgPro.src('img/dino.png');
+  this.abajo = function () {
+    this.y += this.velocidad;
+  }
 
-  setInterval(function () {
-    main();
-  }, 1000/fps);
+  this.izquierda= function () {
+    this.x -= this.velocidad;
+  }
+
+  this.derecha = function () {
+    this.x += this.velocidad;
+  }
 }
 
 var personaje = function(x,y) {
@@ -51,6 +58,28 @@ var personaje = function(x,y) {
   }
 }
 
+
+var personaje1 = new personaje(10, 100);
+var personaje2 = new personaje(10, 200);
+var personaje3 = new personaje(10, 350);
+var protagonista1 = new protagonista(200, 200);
+
+
+
+function inicializar() {
+  canvas = document.getElementById('canvas');
+  ctx = canvas.getContext('2d');
+
+  imgPro= new Image();
+  imgPro.src = 'img/dino.png';
+  
+
+  setInterval(function () {
+    main();
+  }, 1000/fps);
+}
+
+
 function main() {
   borraCanvas();
   personaje1.dibuja();
@@ -64,10 +93,20 @@ function main() {
   //console.log("Funcion");
 }
 
-var personaje1 = new personaje(10, 100);
-var personaje2 = new personaje(10, 200);
-var personaje3 = new personaje(10, 350);
-var protagonista1 = new protagonista(200, 200)
+document.addEventListener('keydown', function(tecla){
+  if(tecla.keyCode == 38){ //mover hacia arriba
+    protagonista1.arriba();
+  }
+  if(tecla.keyCode == 40){ //mover hacia abajo
+    protagonista1.abajo();
+  }
+  if(tecla.keyCode == 37){ //mover hacia la izquierda
+    protagonista1.izquierda();
+  }
+  if(tecla.keyCode == 39){ //mover hacia la derecha
+    protagonista1.derecha();
+  }
+});
 
 function borraCanvas() {
   canvas.width = 500;
