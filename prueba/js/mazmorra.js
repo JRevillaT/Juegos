@@ -13,6 +13,7 @@ var largoF = 50;
 var tile_map;
 
 var enemigo = [];
+var imgAntorcha;
 
 var escenario = [ [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                   [0,2,2,0,0,0,2,2,2,2,0,0,2,2,0],
@@ -40,6 +41,7 @@ var jugador = function () {
   this.colisionEnemigo = function (x,y) {
     if(this.x == x && this.y == y){
       console.log("GAME OVER !!!");
+      this.derrota();
     }
 
   }
@@ -91,6 +93,14 @@ var jugador = function () {
     escenario [8][3] = 3;
   }
 
+  this.derrota = function () {
+    this.x = 1;
+    this.y = 1;
+    this.llave = false;
+
+    escenario [8][3] = 3;
+  }
+
   this.logicaObjetos = function(){
     var objeto = escenario [this.y][this.x];
 
@@ -134,7 +144,7 @@ var oponente = function (x,y) {
   this.mueve = function () {
 
     player.colisionEnemigo(this.x,this.y);
-    
+
     if(this.contador < this.lentitud){
       this.contador++;
     }else {
@@ -190,6 +200,32 @@ function dibujaEscenario() {
   }
 }
 
+var antorcha = function (x,y) {
+  this.x = x;
+  this.y = y;
+
+  this.fotograma = 0;
+  this.contador = 0;
+  this.lentitud=10;
+
+  this.cambiarFotograma = function () {
+    if (this.fotograma < 3)  {
+      this.fotograma++;
+    }else {
+      this.fotograma = 0;
+    }
+  }
+
+  this.dibuja = function () {
+    if(this.contador < this.lentitud)
+      this.contador++;
+    else {
+      this.contador = 0;
+    }
+    ctx.drawImage(tile_map, fotograma*32, 64, 32, 32, anchoF*j, largoF*i, anchoF, largoF);
+  }
+}
+
 var player;
 
 function inicializar() {
@@ -200,6 +236,8 @@ function inicializar() {
   tile_map.src = 'img/tilemap.png';
 
   dibujaEscenario();
+
+  imgAntorcha = new antorcha(0,0);
 
   enemigo.push(new oponente(3, 3));
   enemigo.push(new oponente(3, 5));
@@ -227,6 +265,8 @@ function main() {
     enemigo[e].mueve();
     enemigo[e].dibuja();
   }
+
+  imgAntorcha.dibuja();
 
 
 }
