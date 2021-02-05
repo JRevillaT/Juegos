@@ -108,6 +108,8 @@ var oponente = function (x,y) {
   this.y = y;
 
   this.direccion = Math.floor(Math.random()*4);
+  this.lentitud = 50;
+  this.fotograma = 0;
 
   this.dibuja = function () {
     ctx.drawImage(tile_map, 0, 32, 32, 32, this.x*anchoF, this.y*largoF, anchoF, largoF);
@@ -123,43 +125,48 @@ var oponente = function (x,y) {
   }
 
   this.mueve = function () {
+    if(this.contador < this.lentitud){
+      this.contador++;
+    }else {
 
-    //Se mueve hacia arriba
-    if(this.direccion == 0){
-      if(this.comprobarColision(this.x, this.y-1) == false){
-        this.y--;
-      }else {
-        this.direccion = Math.floor(Math.random()*4);
+      this.contador = 0;
+      //Se mueve hacia arriba
+      if(this.direccion == 0){
+        if(this.comprobarColision(this.x, this.y-1) == false){
+          this.y--;
+        }else {
+          this.direccion = Math.floor(Math.random()*4);
+        }
       }
-    }
 
-    //Se mueve hacia abajo
-    if(this.direccion == 1){
-      if(this.comprobarColision(this.x, this.y+1) == false){
-        this.y++;
-      }else {
-        this.direccion = Math.floor(Math.random()*4);
+      //Se mueve hacia abajo
+      if(this.direccion == 1){
+        if(this.comprobarColision(this.x, this.y+1) == false){
+          this.y++;
+        }else {
+          this.direccion = Math.floor(Math.random()*4);
+        }
       }
-    }
 
-    //Se mueve hacia izquierda
-    if(this.direccion == 2){
-      if(this.comprobarColision(this.x-1, this.y) == false){
-        this.x--;
-      }else {
-        this.direccion = Math.floor(Math.random()*4);
+      //Se mueve hacia izquierda
+      if(this.direccion == 2){
+        if(this.comprobarColision(this.x-1, this.y) == false){
+          this.x--;
+        }else {
+          this.direccion = Math.floor(Math.random()*4);
+        }
       }
-    }
 
-    //Se mueve hacia derecha
-    if(this.direccion == 3){
-      if(this.comprobarColision(this.x+1, this.y) == false){
-        this.x++;
-      }else {
-        this.direccion = Math.floor(Math.random()*4);
+      //Se mueve hacia derecha
+      if(this.direccion == 3){
+        if(this.comprobarColision(this.x+1, this.y) == false){
+          this.x++;
+        }else {
+          this.direccion = Math.floor(Math.random()*4);
+        }
       }
-    }
 
+    }
 
   }
 }
