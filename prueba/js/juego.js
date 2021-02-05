@@ -3,10 +3,18 @@ var ctx;
 var fps=50;
 var imgPro;
 
-var anchoF=50;
-var largoF=50;
+var anchoF = 50;
+var largoF = 50;
 
-var escenario=[[0,1,0,0,0],[0,2,0,0,0],[0,3,0,0,0],[0,4,0,0,0],[0,5,0,0,0]]
+var escenario = [ [0,1,0,0,0],
+                  [1,2,0,2,0],
+                  [0,1,0,2,1],
+                  [0,0,1,0,0],
+                  [1,2,0,0,0]]
+
+var cesped = '#2cbf19';
+var agua = '#51b0a6';
+var tierra = '#855b3d';
 
 //Clases
 
@@ -45,9 +53,19 @@ var protagonista = function (x,y) {
 // Metodos
 
 function dibujaEscenario() {
+  var color;
   for (var i = 0; i < escenario.length; i++) {
     for (var j = 0; j < escenario.length; j++) {
-      console.log(escenario[i][j]);
+      //console.log(escenario[i][j]);
+      if(escenario [i][j] == 0){
+        color = cesped;
+      }else if(escenario [i][j] == 1){
+        color = agua;
+      }else{
+        color = tierra;
+      }
+      ctx.fillStyle = color;
+      ctx.fillRect(j*anchoF, i*largoF, anchoF, largoF);
     }
   }
 }
@@ -104,6 +122,7 @@ function inicializar() {
 
 function main() {
   borraCanvas();
+  dibujaEscenario();
   personaje1.dibuja();
   personaje2.dibuja();
   personaje3.dibuja();
