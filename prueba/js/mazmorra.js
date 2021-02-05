@@ -1,8 +1,13 @@
 var canvas;
 var ctx;
 var fps=50;
+
 var lava = '#eb7507';
 var piso = '#8a948b';
+
+var anchoF = 50;
+var largoF = 50;
+
 var escenario = [ [1,1,0,0,0,0,0,1,0,0],
                   [1,0,0,0,1,1,1,1,1,0],
                   [1,1,1,1,1,0,0,1,1,1],
@@ -27,19 +32,37 @@ var jugador = function () {
   }
 
   this.arriba = function () {
-    this.y--;
+    if(this.margenes(this.x, this.y-1 ) == false /*|| (this.y-1)*anchoF < 0*/)
+      this.y--;
+      console.log(this.x+", "+this.y);
   }
 
   this.abajo = function () {
-    this.y++;
+    if(this.margenes(this.x, this.y+1 ) == false)
+      this.y++;
+      console.log(this.x+", "+this.y);
   }
 
   this.izquierda= function () {
-    this.x--;
+    if(this.margenes(this.x-1, this.y ) == false)
+      this.x--;
+      console.log(this.x+", "+this.y);
   }
 
   this.derecha = function () {
-    this.x++;
+    if(this.margenes(this.x+1, this.y ) == false)
+      this.x++;
+      console.log(this.x+", "+this.y);
+  }
+
+  this.margenes = function (x,y) {
+    var colision = false;
+    if(x >= escenario.length || x < 0 || y>=escenario[0].length || y < 0)
+      colision = true;
+    else if(escenario[y][x] == 0){
+      colision = true;
+    }
+    return colision;
   }
 
 }
