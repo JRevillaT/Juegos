@@ -3,6 +3,11 @@ var ctx;
 var fps=50;
 var imgPro;
 
+var anchoF=50;
+var largoF=50;
+
+var escenario=[[0,1,0,0,0],[0,2,0,0,0],[0,3,0,0,0],[0,4,0,0,0],[0,5,0,0,0]]
+
 //Clases
 
 var protagonista = function (x,y) {
@@ -34,6 +39,16 @@ var protagonista = function (x,y) {
 
   this.derecha = function () {
     this.x += this.velocidad;
+  }
+}
+
+// Metodos
+
+function dibujaEscenario() {
+  for (var i = 0; i < escenario.length; i++) {
+    for (var j = 0; j < escenario.length; j++) {
+      console.log(escenario[i][j]);
+    }
   }
 }
 
@@ -79,6 +94,7 @@ function inicializar() {
   imgPro= new Image();
   imgPro.src = 'img/dino.png';
 
+  dibujaEscenario();
 
   setInterval(function () {
     main();
