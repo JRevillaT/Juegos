@@ -17,7 +17,7 @@ var personaje = function(x,y) {
   this.derecha = true;
 
   this.dibuja = function () {
-    ctx.fillstyle = '#FF000';
+    ctx.fillStyle = '#FF0000';
     ctx.fillRect(this.x, this.y, 50, 50);
   }
 
