@@ -37,6 +37,13 @@ var jugador = function () {
     ctx.drawImage(tile_map, 32, 32, 32, 32, this.x*anchoF, this.y*largoF, anchoF, largoF);
   }
 
+  this.colisionEnemigo = function (x,y) {
+    if(this.x == x && this.y == y){
+      console.log("GAME OVER !!!");
+    }
+
+  }
+
   this.arriba = function () {
     if(this.margenes(this.x, this.y-1 ) == false /*|| (this.y-1)*anchoF < 0*/)
       this.y--;
@@ -125,6 +132,9 @@ var oponente = function (x,y) {
   }
 
   this.mueve = function () {
+
+    player.colisionEnemigo(this.x,this.y);
+    
     if(this.contador < this.lentitud){
       this.contador++;
     }else {
@@ -191,9 +201,9 @@ function inicializar() {
 
   dibujaEscenario();
 
-  enemigo.push(new oponente(3,3));
-  enemigo.push(new oponente(6,6));
-  enemigo.push(new oponente(9,9));
+  enemigo.push(new oponente(3, 3));
+  enemigo.push(new oponente(3, 5));
+  enemigo.push(new oponente(7, 7));
 
    player = new jugador();
    document.addEventListener('keydown', function (tecla) {
