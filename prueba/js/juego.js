@@ -6,15 +6,20 @@ var imgPro;
 var anchoF = 50;
 var largoF = 50;
 
-var escenario = [ [0,1,0,0,0],
-                  [1,2,0,2,0],
-                  [0,1,0,2,1],
-                  [0,0,1,0,0],
-                  [1,2,0,0,0]]
+var escenario = [ [0,1,0,0,0,1,0,1,0,0],
+                  [1,0,0,0,0,1,1,1,0,0],
+                  [0,1,0,0,1,0,0,1,1,1],
+                  [0,0,1,0,0,0,0,0,0,1],
+                  [0,0,1,0,0,0,0,0,0,1],
+                  [0,0,1,0,0,0,1,0,0,1],
+                  [0,0,1,0,0,0,1,0,0,1],
+                  [0,0,1,0,0,0,0,0,0,1],
+                  [0,0,1,0,0,1,1,0,0,1],
+                  [1,1,0,0,0,0,0,1,1,1]];
 
-var cesped = '#2cbf19';
-var agua = '#51b0a6';
-var tierra = '#855b3d';
+var lava = '##eb7507';
+var piso = '#8a948b';
+
 
 //Clases
 
@@ -58,11 +63,9 @@ function dibujaEscenario() {
     for (var j = 0; j < escenario.length; j++) {
       //console.log(escenario[i][j]);
       if(escenario [i][j] == 0){
-        color = cesped;
+        color = lava
       }else if(escenario [i][j] == 1){
-        color = agua;
-      }else{
-        color = tierra;
+        color = piso;
       }
       ctx.fillStyle = color;
       ctx.fillRect(j*anchoF, i*largoF, anchoF, largoF);
@@ -136,23 +139,23 @@ function main() {
 }
 
 document.addEventListener('keydown', function(tecla){
-  if(tecla.keyCode == 38){ //mover hacia arriba
+  if(tecla.keyCode == 38 || tecla.keyCode == 87 ){ //mover hacia arriba
     protagonista1.arriba();
   }
-  if(tecla.keyCode == 40){ //mover hacia abajo
+  if(tecla.keyCode == 40 || tecla.keyCode == 83){ //mover hacia abajo
     protagonista1.abajo();
   }
-  if(tecla.keyCode == 37){ //mover hacia la izquierda
+  if(tecla.keyCode == 37 || tecla.keyCode == 65){ //mover hacia la izquierda
     protagonista1.izquierda();
   }
-  if(tecla.keyCode == 39){ //mover hacia la derecha
+  if(tecla.keyCode == 39 || tecla.keyCode == 68){ //mover hacia la derecha
     protagonista1.derecha();
   }
 });
 
 function borraCanvas() {
   canvas.width = 500;
-  canvas.height = 400;
+  canvas.height = 500;
 }
 
 
