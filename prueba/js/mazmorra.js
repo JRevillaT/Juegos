@@ -4,6 +4,8 @@ var fps=50;
 
 var lava = '#eb7507';
 var piso = '#8a948b';
+var col_llave = '#fccf03';
+var salida = '#b09751';
 
 var anchoF = 50;
 var largoF = 50;
@@ -14,17 +16,18 @@ var escenario = [ [1,1,0,0,0,0,0,1,0,0,0,0,0,0,1],
                   [0,0,1,0,1,0,0,1,0,1,0,0,1,0,1],
                   [0,0,1,0,1,0,1,1,1,1,0,0,1,1,1],
                   [0,0,1,0,1,0,1,0,0,1,0,0,0,1,0],
-                  [1,1,1,0,1,0,1,0,0,1,0,0,1,1,0],
-                  [0,0,1,1,1,0,0,0,0,1,0,0,0,1,1],
+                  [1,1,1,0,1,0,1,0,0,1,0,0,2,1,0],
+                  [0,0,1,1,1,0,3,0,0,1,0,0,0,1,1],
                   [0,0,1,0,0,0,0,0,0,1,1,1,0,0,1],
                   [1,1,1,0,0,0,0,0,0,1,0,0,0,0,1]
                 ];
 
 
 var jugador = function () {
-  this.x = 1;
-  this.y = 1;
-  this.color = '#eff216';
+  this.x = 0;
+  this.y = 9;
+  this.color = '#36965e';
+  this.llave = false;
 
   this.dibuja = function () {
     ctx.fillStyle = this.color;
@@ -35,24 +38,28 @@ var jugador = function () {
     if(this.margenes(this.x, this.y-1 ) == false /*|| (this.y-1)*anchoF < 0*/)
       this.y--;
       console.log(this.x+", "+this.y);
+      this.logicaObjetos();
   }
 
   this.abajo = function () {
     if(this.margenes(this.x, this.y+1 ) == false)
       this.y++;
       console.log(this.x+", "+this.y);
+      this.logicaObjetos();
   }
 
   this.izquierda= function () {
     if(this.margenes(this.x-1, this.y ) == false)
       this.x--;
       console.log(this.x+", "+this.y);
+      this.logicaObjetos();
   }
 
   this.derecha = function () {
     if(this.margenes(this.x+1, this.y ) == false)
       this.x++;
       console.log(this.x+", "+this.y);
+      this.logicaObjetos();
   }
 
   this.margenes = function (x,y) {
@@ -63,6 +70,32 @@ var jugador = function () {
       colision = true;
     }
     return colision;
+  }
+
+  this.victoria = function () {
+    console.log("HAS GANADO!!!");
+    this.x = 0;
+    this.y = 9;
+    this.llave = false;
+
+    escenario [6][12] = 2;
+  }
+
+  this.logicaObjetos = function(){
+    var objeto = escenario [this.y][this.x];
+
+    if(objeto == 2){
+      this.llave = true;
+      escenario [this.y][this.x]=1;
+      console.log("Se encontro la llave");
+    }
+    if(objeto == 3){
+      if(this.llave == true)
+        this.victoria();
+      else {
+        console.log("Te falta la llave");
+      }
+    }
   }
 
 }
@@ -76,6 +109,10 @@ function dibujaEscenario() {
         color = lava
       }else if(escenario [i][j] == 1){
         color = piso;
+      }else if(escenario [i][j] == 2){
+        color = col_llave;
+      }else if(escenario [i][j] == 3){
+        color = salida;
       }
       ctx.fillStyle = color;
       ctx.fillRect(j*anchoF, i*largoF, anchoF, largoF);
