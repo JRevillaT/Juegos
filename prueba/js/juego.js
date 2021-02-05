@@ -11,7 +11,9 @@ var protagonista = function (x,y) {
   this.velocidad = 3;
 
   this.texto = function () {
-    
+    ctx.font = '30px impact';
+    ctx.fillStyle = '#555555';
+    ctx.fillText("("+this.x+", "+this.y+")", 100, 100);
   }
 
   this. dibuja = function () {
