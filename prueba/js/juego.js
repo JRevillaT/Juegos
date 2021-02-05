@@ -6,22 +6,50 @@ var imgPro;
 var anchoF = 50;
 var largoF = 50;
 
-var escenario = [ [0,1,0,0,0,1,0,1,0,0],
-                  [1,0,0,0,0,1,1,1,0,0],
-                  [0,1,0,0,1,0,0,1,1,1],
+var escenario = [ [1,1,0,0,0,0,0,1,0,0],
+                  [1,0,0,0,1,1,1,1,1,0],
+                  [1,1,1,1,1,0,0,1,1,1],
+                  [0,0,1,0,1,0,0,1,0,1],
+                  [0,0,1,0,1,0,1,1,1,1],
+                  [0,0,1,0,1,0,1,0,0,1],
+                  [1,1,1,0,1,0,1,0,0,1],
+                  [0,0,1,1,1,0,0,0,0,1],
                   [0,0,1,0,0,0,0,0,0,1],
-                  [0,0,1,0,0,0,0,0,0,1],
-                  [0,0,1,0,0,0,1,0,0,1],
-                  [0,0,1,0,0,0,1,0,0,1],
-                  [0,0,1,0,0,0,0,0,0,1],
-                  [0,0,1,0,0,1,1,0,0,1],
-                  [1,1,0,0,0,0,0,1,1,1]];
+                  [1,1,1,0,0,0,0,0,0,1]];
 
-var lava = '##eb7507';
+var lava = '#eb7507';
 var piso = '#8a948b';
 
 
 //Clases
+
+var jugador = function () {
+  this.x = 1;
+  this.y = 1;
+  this.color = '#eff216';
+
+  this.dibuja = function () {
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x*anchoF, this.y*largoF, anchoF, largoF);
+  }
+
+  this.arriba = function () {
+    this.y--;
+  }
+
+  this.abajo = function () {
+    this.y++;
+  }
+
+  this.izquierda= function () {
+    this.x--;
+  }
+
+  this.derecha = function () {
+    this.x++;
+  }
+
+}
 
 var protagonista = function (x,y) {
   this.x = x;
@@ -105,6 +133,7 @@ var personaje1 = new personaje(10, 100);
 var personaje2 = new personaje(10, 200);
 var personaje3 = new personaje(10, 350);
 var protagonista1 = new protagonista(200, 200);
+var player;
 
 
 
@@ -116,6 +145,11 @@ function inicializar() {
   imgPro.src = 'img/dino.png';
 
   dibujaEscenario();
+
+   player = new jugador();
+   document.addEventListener('keydown', function (tecla) {
+
+   });
 
   setInterval(function () {
     main();
@@ -131,6 +165,7 @@ function main() {
   personaje3.dibuja();
   protagonista1.dibuja();
   protagonista1.texto();
+  player.dibuja();
 
   personaje1.mueve(1);
   personaje2.mueve(5);
@@ -141,15 +176,19 @@ function main() {
 document.addEventListener('keydown', function(tecla){
   if(tecla.keyCode == 38 || tecla.keyCode == 87 ){ //mover hacia arriba
     protagonista1.arriba();
+    player.arriba();
   }
   if(tecla.keyCode == 40 || tecla.keyCode == 83){ //mover hacia abajo
     protagonista1.abajo();
+    player.abajo();
   }
   if(tecla.keyCode == 37 || tecla.keyCode == 65){ //mover hacia la izquierda
     protagonista1.izquierda();
+    player.izquierda();
   }
   if(tecla.keyCode == 39 || tecla.keyCode == 68){ //mover hacia la derecha
     protagonista1.derecha();
+    player.derecha();
   }
 });
 
