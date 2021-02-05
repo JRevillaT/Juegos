@@ -92,6 +92,7 @@ function main() {
   personaje2.dibuja();
   personaje3.dibuja();
   protagonista1.dibuja();
+  protagonista1.texto();
 
   personaje1.mueve(1);
   personaje2.mueve(5);
