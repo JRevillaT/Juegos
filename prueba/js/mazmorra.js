@@ -221,8 +221,9 @@ var antorcha = function (x,y) {
       this.contador++;
     else {
       this.contador = 0;
+      this.cambiarFotograma();
     }
-    ctx.drawImage(tile_map, fotograma*32, 64, 32, 32, anchoF*j, largoF*i, anchoF, largoF);
+    ctx.drawImage(tile_map, this.fotograma*32, 64, 32, 32, anchoF*x, largoF*y, anchoF, largoF);
   }
 }
 
