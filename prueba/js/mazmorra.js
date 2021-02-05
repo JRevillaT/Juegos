@@ -8,16 +8,16 @@ var piso = '#8a948b';
 var anchoF = 50;
 var largoF = 50;
 
-var escenario = [ [1,1,0,0,0,0,0,1,0,0],
-                  [1,0,0,0,1,1,1,1,1,0],
-                  [1,1,1,1,1,0,0,1,1,1],
-                  [0,0,1,0,1,0,0,1,0,1],
-                  [0,0,1,0,1,0,1,1,1,1],
-                  [0,0,1,0,1,0,1,0,0,1],
-                  [1,1,1,0,1,0,1,0,0,1],
-                  [0,0,1,1,1,0,0,0,0,1],
-                  [0,0,1,0,0,0,0,0,0,1],
-                  [1,1,1,0,0,0,0,0,0,1]
+var escenario = [ [1,1,0,0,0,0,0,1,0,0,0,0,0,0,1],
+                  [1,0,0,0,1,1,1,1,1,0,0,0,1,1,1],
+                  [1,1,1,1,1,0,0,1,1,1,1,1,1,0,0],
+                  [0,0,1,0,1,0,0,1,0,1,0,0,1,0,1],
+                  [0,0,1,0,1,0,1,1,1,1,0,0,1,1,1],
+                  [0,0,1,0,1,0,1,0,0,1,0,0,0,1,0],
+                  [1,1,1,0,1,0,1,0,0,1,0,0,1,1,0],
+                  [0,0,1,1,1,0,0,0,0,1,0,0,0,1,1],
+                  [0,0,1,0,0,0,0,0,0,1,1,1,0,0,1],
+                  [1,1,1,0,0,0,0,0,0,1,0,0,0,0,1]
                 ];
 
 
@@ -57,7 +57,7 @@ var jugador = function () {
 
   this.margenes = function (x,y) {
     var colision = false;
-    if(x >= escenario.length || x < 0 || y>=escenario[0].length || y < 0)
+    if(y >= escenario.length || y < 0 || x>=escenario[0].length || x < 0)
       colision = true;
     else if(escenario[y][x] == 0){
       colision = true;
@@ -70,7 +70,7 @@ var jugador = function () {
 function dibujaEscenario() {
   var color;
   for (var i = 0; i < escenario.length; i++) {
-    for (var j = 0; j < escenario.length; j++) {
+    for (var j = 0; j < escenario[i].length; j++) {
       //console.log(escenario[i][j]);
       if(escenario [i][j] == 0){
         color = lava
@@ -124,6 +124,6 @@ document.addEventListener('keydown', function(tecla){
 });
 
 function borraCanvas() {
-  canvas.width = 500;
+  canvas.width = 750;
   canvas.height = 500;
 }
