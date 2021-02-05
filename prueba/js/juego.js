@@ -1,10 +1,23 @@
 var canvas;
 var ctx;
 var fps=50;
+var imgPro;
+
+var protagonista = function (x,y) {
+  this.x=x;
+  this.y=y;
+
+  this. dibuja = function () {
+    ctx.drawImage(imgPro, this.x, this.y);
+  }
+}
 
 function inicializar() {
   canvas = document.getElementById('canvas');
   ctx = canvas.getContext('2d');
+
+  imgPro= new Image();
+  imgPro.src('img/dino.png');
 
   setInterval(function () {
     main();
@@ -43,6 +56,7 @@ function main() {
   personaje1.dibuja();
   personaje2.dibuja();
   personaje3.dibuja();
+  protagonista1.dibuja();
 
   personaje1.mueve(1);
   personaje2.mueve(5);
@@ -50,9 +64,10 @@ function main() {
   //console.log("Funcion");
 }
 
-var personaje1 = new personaje(10,100);
-var personaje2 = new personaje(10,200);
-var personaje3 = new personaje(10,350);
+var personaje1 = new personaje(10, 100);
+var personaje2 = new personaje(10, 200);
+var personaje3 = new personaje(10, 350);
+var protagonista1 = new protagonista(200, 200)
 
 function borraCanvas() {
   canvas.width = 500;
