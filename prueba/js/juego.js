@@ -10,6 +10,10 @@ var protagonista = function (x,y) {
   this.y = y;
   this.velocidad = 3;
 
+  this.texto = function () {
+    
+  }
+
   this. dibuja = function () {
     ctx.drawImage(imgPro, this.x, this.y);
   }
@@ -72,7 +76,7 @@ function inicializar() {
 
   imgPro= new Image();
   imgPro.src = 'img/dino.png';
-  
+
 
   setInterval(function () {
     main();
