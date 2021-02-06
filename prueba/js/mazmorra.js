@@ -13,7 +13,7 @@ var largoF = 50;
 var tile_map;
 
 var enemigo = [];
-var imgAntorcha;
+var imgAntorcha = [];
 
 var escenario = [ [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                   [0,2,2,0,0,0,2,2,2,2,0,0,2,2,0],
@@ -238,11 +238,12 @@ function inicializar() {
 
   dibujaEscenario();
 
-  imgAntorcha = new antorcha(0,0);
-
-  enemigo.push(new oponente(3, 3));
-  enemigo.push(new oponente(3, 5));
+  enemigo.push(new oponente(3, 7));
   enemigo.push(new oponente(7, 7));
+
+  imgAntorcha.push(new antorcha(0,0));
+  imgAntorcha.push(new antorcha(3,3));
+  imgAntorcha.push(new antorcha(1,3));
 
    player = new jugador();
    document.addEventListener('keydown', function (tecla) {
@@ -267,7 +268,9 @@ function main() {
     enemigo[e].dibuja();
   }
 
-  imgAntorcha.dibuja();
+  for (var a = 0; a < imgAntorcha.length; a++) {
+    imgAntorcha[a].dibuja();
+  }
 
 
 }
